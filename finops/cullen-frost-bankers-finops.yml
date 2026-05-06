@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,110 +9,91 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Cullen/Frost Bankers
 providerId: cullen-frost-bankers
-publisherName: Cullen/Frost Bankers
-serviceCategory: API
+publisherName: Cullen/Frost Bankers, Inc.
+serviceCategory: Banking
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Banking
   - Financial Services
-  - Texas
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the Cullen/Frost Bankers API surface. Provides a FOCUS-aligned
-  mapping for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
+description: 'FOCUS-aligned FinOps for Cullen/Frost Bankers: banking-relationship fees (account, treasury,
+  ACH, wire) per the bank''s schedule rather than API-call metering; no public developer API.'
+sources:
+  - https://www.frostbank.com/
+notes: No public API or API pricing. Reconcile against the bank's customer fee schedule.
 principles:
   - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
+    description: Use Frost's commercial banking statements and treasury reports to see fee categories
+      and transaction counts.
   - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
+    description: Tag accounts / sub-accounts by entity / cost-center for chargeback of treasury and ACH
+      activity.
   - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
+    description: Right-size accounts / services to match transaction volume; consolidate ACH batches;
+      eliminate unused treasury services at quarterly relationship review.
   - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
+    description: Treasury / finance owns the banking relationship; review monthly account analysis statements
+      for fee drift.
 domains:
   - name: Understand Usage and Cost
     capabilities:
-      - Data Ingestion
       - Allocation
       - Reporting and Analytics
-      - Anomaly Management
   - name: Quantify Business Value
     capabilities:
-      - Planning and Estimating
       - Forecasting
       - Budgeting
-      - Benchmarking
-      - Unit Economics
   - name: Optimize Usage and Cost
     capabilities:
-      - Architecting for Cloud
       - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
   - name: Manage the FinOps Practice
     capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
       - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
 billingModel:
-  pricingCategory: Usage-Based
+  pricingCategory: Per-Service Banking Fees
   billingFrequency: Monthly
   billingCurrency: USD
   chargeCategories:
     - Usage
-    - Purchase
     - Tax
-    - Credit
     - Adjustment
   chargeFrequency: Recurring
 focusColumns:
-  ServiceName: Cullen/Frost Bankers
-  ServiceCategory: Developer Tools / API
+  ServiceName: Frost Bank
+  ServiceCategory: Banking
   ProviderName: Cullen/Frost Bankers
-  PublisherName: Cullen/Frost Bankers
-  InvoiceIssuerName: Cullen/Frost Bankers
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PublisherName: Cullen/Frost Bankers, Inc.
+  InvoiceIssuerName: Frost Bank
+  PricingCategory: Per-Service Fee
   BillingCurrency: USD
   ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: ach_transactions
+    description: ACH credits / debits originated through Frost
+    unit: transaction
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
+      - account
+      - entity
+  - name: wire_transfers
+    description: Domestic / international wire transfers
+    unit: wire
     aggregation: sum
     dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
+      - account
+      - direction
+  - name: account_analysis_fees
+    description: Maintenance and treasury services billed via account analysis
+    unit: month
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
+      - account
 apis:
   - name: Cullen/Frost Bankers API
-    baseURL: https://api.cullenfrост.com
+    baseURL: https://api.cullenfrost.com
     tags:
       - Banking
       - Financial Services
@@ -119,11 +101,11 @@ apis:
     serviceName: Cullen/Frost Bankers API
     serviceCategory: API
 unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
+  - name: Cost per ACH Transaction
+    metric: billed_cost / ach_transactions
     target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
+  - name: Cost per Account
+    metric: billed_cost / accounts
     target: TBD
 maintainers:
   - FN: Kin Lane
