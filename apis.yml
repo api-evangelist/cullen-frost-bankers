@@ -28,6 +28,8 @@ apis:
     description: >-
       The Cullen/Frost Bankers API provides access to platform services and data for enterprise integration and automation.
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/frostbank
   - type: Website
     url: https://www.cullenfrост.com
 maintainers:
