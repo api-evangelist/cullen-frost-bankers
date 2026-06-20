@@ -2,7 +2,7 @@ aid: cullen-frost-bankers
 url: https://raw.githubusercontent.com/api-evangelist/cullen-frost-bankers/refs/heads/main/apis.yml
 name: Cullen/Frost Bankers
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Banking
   - Financial Services
@@ -19,7 +19,7 @@ apis:
       - Banking
       - Financial Services
       - Texas
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://api.cullenfrост.com
     humanURL: https://developer.cullenfrост.com
     properties:
