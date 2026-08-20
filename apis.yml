@@ -17,6 +17,10 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cullen-frost-bankers.png
 tags:
   - Banking
+  - Financial-Services
+  - Texas
+tags_raw:
+  - Banking
   - Financial Services
   - Texas
 description: >-
@@ -28,6 +32,10 @@ apis:
   - aid: cullen-frost-bankers:cullen-frost-bankers-api
     name: Cullen/Frost Bankers API
     tags:
+      - Banking
+      - Financial-Services
+      - Texas
+    tags_raw:
       - Banking
       - Financial Services
       - Texas
