@@ -41,7 +41,7 @@ plans:
         price: see Frost Bank fee schedule
         userMultiplied: false
     elements:
-      - name: Cullen/Frost Bankers API
+      - name: Frost Bank commercial banking relationship (no public API)
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

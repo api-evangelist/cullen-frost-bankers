@@ -28,7 +28,7 @@ limits:
     metric: varies
     limit: per commercial / treasury integration agreement
     applies:
-      - Cullen/Frost Bankers API
+      - Frost Bank commercial / treasury integrations (no public API)
 policies:
   - name: Customer agreement scoping
     description: Throughput, file cutoffs, and ACH limits are scoped to the customer's treasury / commercial

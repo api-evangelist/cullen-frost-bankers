@@ -1,0 +1,93 @@
+generated: '2026-09-14'
+method: probed
+source: live GET of each named /.well-known/ path on every host in the record
+provider: Cullen/Frost Bankers
+providerId: cullen-frost-bankers
+description: >-
+  Named-path probe of the five discovery documents across every host Cullen/Frost Bankers is known to
+  operate. Nothing was served. No WellKnown or SecurityTxt pointer is wired into apis.yml because a
+  recorded absence is not a presence.
+notes: >-
+  investor.frostbank.com is a CATCH-ALL and is the dominant false positive on this probe: it answers
+  HTTP 200 text/html with the 11-byte body "Invalid key" for EVERY path under /.well-known/, including
+  a control path (/.well-known/zzz-not-a-real-path-12345.json) that also returned 200. Those 200s are
+  NOT documents and must never be credited. www.frostbank.com returns a 404 SPA shell on every path;
+  api.frostbank.com (Imperva-fronted, 403 at the root) returns a plain nginx 404; the frostbank.com
+  apex 301s to www.
+hosts:
+  - host: www.frostbank.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: frostbank.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 301
+        note: 301 to www.frostbank.com, which 404s
+      - path: /.well-known/openid-configuration
+        status: 301
+      - path: /.well-known/oauth-authorization-server
+        status: 301
+      - path: /.well-known/api-catalog
+        status: 301
+      - path: /.well-known/ai-plugin.json
+        status: 301
+      - path: /.well-known/agent-card.json
+        status: 301
+      - path: /.well-known/agent.json
+        status: 301
+  - host: api.frostbank.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: investor.frostbank.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        note: >-
+          NOT A DOCUMENT. content-type text/html, 11-byte body "Invalid key". A control path on the
+          same host also returned 200 with the same body. Treated as a miss.
+      - path: /.well-known/openid-configuration
+        status: 301
+      - path: /.well-known/oauth-authorization-server
+        status: 301
+      - path: /.well-known/api-catalog
+        status: 301
+      - path: /.well-known/ai-plugin.json
+        status: 200
+        note: NOT A DOCUMENT — same "Invalid key" catch-all. Treated as a miss.
+      - path: /.well-known/agent-card.json
+        status: 200
+        note: NOT A DOCUMENT — same "Invalid key" catch-all. Treated as a miss.
+      - path: /.well-known/agent.json
+        status: 200
+        note: NOT A DOCUMENT — same "Invalid key" catch-all. Treated as a miss.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

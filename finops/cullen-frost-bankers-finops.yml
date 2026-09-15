@@ -95,13 +95,16 @@ meters:
     dimensions:
       - account
 apis:
-  - name: Cullen/Frost Bankers API
-    baseURL: https://api.cullenfrost.com
+  - name: Frost Bank commercial banking relationship (no public API)
+    baseURL: null
+    # 2026-09-14: the previous value here was https://api.cullenfrost.com, a fabricated host.
+    # cullenfrost.com has NO DNS record of any kind. Frost Bank publishes no public developer API;
+    # see apis.yml x-coverage. Left null rather than guessed from the domain.
     tags:
       - Banking
       - Financial Services
       - Texas
-    serviceName: Cullen/Frost Bankers API
+    serviceName: Frost Bank commercial banking relationship
     serviceCategory: API
 unitEconomics:
   - name: Cost per ACH Transaction

@@ -1,0 +1,41 @@
+specification: API Commons Packages
+specificationVersion: '0.1'
+generated: '2026-09-14'
+method: searched
+source: >-
+  registry.npmjs.org search, pypi.org, rubygems.org search, and the GitHub org namespace — all queried
+  2026-09-14
+provider: Cullen/Frost Bankers
+providerId: cullen-frost-bankers
+description: >-
+  Cullen/Frost Bankers / Frost Bank publishes no first-party client libraries. A registry sweep returned
+  zero packages under the company's name on every registry queried, and the company operates no public
+  GitHub organization. No SDKs pointer is wired into apis.yml.
+package_count: 0
+official_count: 0
+packages: []
+registries_searched:
+  - registry: npm
+    query: frostbank
+    url: https://registry.npmjs.org/-/v1/search?text=frostbank
+    results: 0
+  - registry: pypi
+    query: frostbank
+    url: https://pypi.org/pypi/frostbank/json
+    status: 404
+    results: 0
+  - registry: rubygems
+    query: frostbank
+    url: https://rubygems.org/api/v1/search.json?query=frostbank
+    results: 0
+  - registry: github-org
+    query: frostbank, cullenfrost, frost-bank, cullen-frost-bankers
+    status: 404
+    results: 0
+    note: No GitHub organization exists under any of the four candidate namespaces.
+notes: >-
+  Absence of a first-party SDK is consistent with the absence of a public API — there is no contract for
+  an SDK to wrap. Reconcile if Frost launches a developer program.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

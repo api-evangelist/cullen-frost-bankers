@@ -1,0 +1,52 @@
+specification: API Commons Lifecycle
+specificationVersion: '0.1'
+generated: '2026-09-14'
+method: probed
+source: https://www.frostbank.com/sitemaps/frostbank.xml
+provider: Cullen/Frost Bankers
+providerId: cullen-frost-bankers
+description: >-
+  Cullen/Frost Bankers publishes no API lifecycle surface. There is no versioning policy, no deprecation
+  or sunset policy, no API changelog or release notes, no SLA, and no status page — because there is no
+  public developer API for any of them to describe.
+versioning:
+  scheme: none
+  documented: false
+  note: No public API and no versioning policy published.
+deprecation_policy:
+  published: false
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    RFC 8594 Sunset/Deprecation headers are not applicable — no public API host serves an anonymous
+    response to observe them on. api.frostbank.com returns HTTP 403 from Imperva at the root.
+status_page:
+  published: false
+  url: null
+  note: >-
+    IMPORTANT for future runs — DO NOT credit https://www.frostbank.com/status. It is listed in the
+    sitemap and returns HTTP 200, but the body is the Frost Bank marketing homepage, not a status
+    dashboard. It is a soft-404 and no StatusPage pointer is wired.
+sla:
+  published: false
+  note: Service levels for commercial/treasury integrations are set in the customer agreement, not published.
+changelog:
+  published: false
+  note: >-
+    https://www.frostbank.com/newsroom (HTTP 200) carries corporate press releases and
+    https://www.frostbank.com/investor-relations/cfr-news carries CFR investor news. Neither is an API
+    changelog and neither is wired as a ChangeLog pointer.
+deprecated_operations: []
+evidence:
+  - url: https://www.frostbank.com/status
+    status: 200
+    finding: soft-404 — returns the marketing homepage, not a status page
+  - url: https://www.frostbank.com/sitemaps/frostbank.xml
+    status: 200
+    finding: 320 URLs, zero developer/API/docs pages
+  - url: https://api.frostbank.com/
+    status: 403
+    finding: Imperva-fronted; no anonymous surface to observe lifecycle headers on
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

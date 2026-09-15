@@ -1,0 +1,72 @@
+specification: API Commons Conformance
+specificationVersion: '0.1'
+generated: '2026-09-14'
+method: searched
+source: >-
+  https://www.frostbank.com/ (sitemap walk of 320 URLs) plus
+  https://www.frostbank.com/dam/Docs/Newsroom/NewsRelease/FrostBankPartnersWithPlaidToBringOpenFinanceSolutions.pdf
+provider: Cullen/Frost Bankers
+providerId: cullen-frost-bankers
+regulatory_regime: banking_open_finance
+description: >-
+  Standards conformance for Cullen/Frost Bankers, Inc. (Frost Bank). Every entry below is FALSE for the
+  same single reason: Frost publishes no machine-readable API contract of any kind, so there is nothing
+  in which a standard could be declared. This file records the probe so that a later run does not have
+  to re-litigate it, and so the gap is legible to a reader rather than being an unexplained blank.
+domain_standard:
+  declared: false
+  standard: null
+  evidence: null
+  note: >-
+    REWARD-ONLY dimension, correctly scored as absent rather than penalised. The banking / open-finance
+    market has real domain standards a contract could declare — FDX, ISO 20022, FAPI, Berlin Group
+    NextGenPSD2, Nacha ACH file formats — but Frost publishes no contract to declare one in. Frost's
+    consumer open-finance connectivity is delivered through Plaid Exchange, meaning the machine-readable
+    surface a third party integrates against belongs to Plaid, not to Frost.
+conformance:
+  - id: openapi
+    conforms: false
+    evidence: >-
+      No OpenAPI at any probed location. /openapi.json, /openapi.yaml, /swagger.json, /v1/openapi.json,
+      /api-docs, /docs and /redoc all returned 404 on www.frostbank.com and on api.frostbank.com.
+  - id: fdx
+    conforms: false
+    evidence: >-
+      No Financial Data Exchange (FDX) API surface published. The 320-URL frostbank.com sitemap contains
+      no developer, API or FDX page.
+  - id: iso20022
+    conforms: false
+    evidence: >-
+      No ISO 20022 message schemas or payment-message documentation published publicly. Wire and ACH
+      formats for commercial customers are set inside the treasury agreement, not on a public page.
+  - id: oauth2
+    conforms: false
+    evidence: >-
+      No /.well-known/oauth-authorization-server on any host (404 on www.frostbank.com and
+      api.frostbank.com; 301 on the apex). See well-known/cullen-frost-bankers-well-known.yml.
+  - id: oidc
+    conforms: false
+    evidence: No /.well-known/openid-configuration served on any host probed.
+  - id: fapi
+    conforms: false
+    evidence: >-
+      FAPI profiles are declared in an authorization-server metadata document; none is served, so no
+      FAPI claim can be made either way.
+  - id: psd2
+    conforms: false
+    evidence: >-
+      Not applicable by jurisdiction — Frost Bank is a Texas-chartered US bank with no EU operations,
+      and PSD2 does not reach it.
+  - id: rfc9457
+    conforms: false
+    evidence: No public error contract exists to carry application/problem+json.
+certifications: []
+compliance_programs: []
+notes: >-
+  Frost Bank is FDIC-insured and supervised under the US federal banking regime, but that is a
+  regulatory status rather than a published API compliance program, and no trust center, SOC 2, ISO
+  27001 or PCI attestation page was found on a first-party host. No Compliance pointer is wired into
+  apis.yml because nothing of the kind is published.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
