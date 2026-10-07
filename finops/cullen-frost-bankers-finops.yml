@@ -109,10 +109,8 @@ apis:
 unitEconomics:
   - name: Cost per ACH Transaction
     metric: billed_cost / ach_transactions
-    target: TBD
   - name: Cost per Account
     metric: billed_cost / accounts
-    target: TBD
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
