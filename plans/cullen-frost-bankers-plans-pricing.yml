@@ -1,0 +1,62 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Cullen/Frost Bankers
+providerId: cullen-frost-bankers
+created: '2026-05-04'
+# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
+# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
+method: generated
+modified: '2026-05-05'
+reconciled: false
+tags:
+  - Banking
+  - Financial Services
+  - Texas
+description: Cullen/Frost Bankers (Frost Bank) is a Texas-headquartered regional bank. Public banking
+  products (consumer / commercial accounts, treasury management) are priced per their schedule of fees;
+  there is no public developer API plan or pricing tier.
+sources:
+  - https://www.frostbank.com/
+notes: No public developer API or API-pricing page exists. Treasury / commercial integration fees are
+  in the bank's published fee schedule and are not API plans. Reconcile if a developer portal launches.
+plans:
+  - id: cullen-frost-bankers-private
+    name: Private / Commercial Banking
+    type: enterprise
+    description: Banking integrations (treasury, ACH origination, file delivery) are arranged through
+      the commercial banking relationship; no public API tier.
+    entries:
+      - label: Banking relationship
+        description: Account, treasury, and payment fees per the bank's published schedule
+        name: banking_relationship
+        type: subscription
+        metric: relationship
+        limit: -1
+        timeFrame: month
+        geo: US
+        domains:
+          - https://www.frostbank.com
+        unit: 1
+        price: see Frost Bank fee schedule
+        userMultiplied: false
+    elements:
+      - name: Frost Bank commercial banking relationship (no public API)
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - subscription
+  units: []
+  plans:
+  - name: Private / Commercial Banking
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
